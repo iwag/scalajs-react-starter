@@ -10,14 +10,14 @@ object TimerExample {
 
   def content = Timer()
 
-  case class Content(id:String, imgsrc:String, title:String, description:String) {
-    def link:String = "http://nico.ms/" + id
+  case class Content(id: String, imgsrc: String, title: String, description: String) {
+    def link: String = "http://nico.ms/" + id
   }
 
   val container = ReactComponentB[(Content)]("picture")
     .render(p => {
-    div(cls := "ui divider")
     div(cls := "item",
+      div(cls := "ui divider"),
       div(cls := "image",
         img(cls := "ui left small rounded image", src := p.imgsrc, title := p.title)
       ),
@@ -35,7 +35,7 @@ object TimerExample {
 
   val contentsList = ReactComponentB[(List[Content])]("contentsList")
     .render(list => {
-    div(cls := "ui segment")(
+    div(cls := "ui items")(
       list.map(p => container.withKey(p.id)(p))
     )
   })
@@ -70,13 +70,14 @@ object TimerExample {
           |    }
         """.stripMargin
 
-      Ajax.post(url,data).foreach {
+      Ajax.post(url, data).foreach {
         x =>
           val rows = x.responseText.split("\r\n").toList
-          val valuesString = rows.find(p => p.contains(""""type":"hits","values"""")).get
+          val valuesString = rows.find(p => p.contains( """"type":"hits","values"""")).get
+          val obj = valuesString.asInstanceOf[js.Dynamic]
           // val contents = read[List[Content]](valuesString)
           //$.modState(_ => State(contents))
-          dom.console.info(valuesString)
+          dom.console.info(obj)
       }
       /*
       g.jsonp(url, (result: js.Dynamic) => {
@@ -100,7 +101,7 @@ object TimerExample {
   def initialState(): State = {
     State(
       List(Content("sm9", "http://tn-skr2.smilevideo.jp/smile?i=9", "sm9", "sm9 sm9"),
-      Content("sm22954889", "http://tn-skr2.smilevideo.jp/smile?i=22954889", "test", "test test"))
+        Content("sm22954889", "http://tn-skr2.smilevideo.jp/smile?i=22954889", "test", "test test"))
     )
   }
 
@@ -109,11 +110,14 @@ object TimerExample {
     .initialState(initialState())
     .backend(new Backend(_))
     .render(props => {
-    div(cls := "column",
-      div(cls := "ui large aligned header",
-        "test"
+    div(cls := "ui page grid",
+      div(cls := "column",
+        div(cls := "ui large aligned header",
+          "test"
+        ),
+        div(cls := "ui divider"),
+        contentsList(props.state.contents)
       )
-        (div(cls := "ui divider", contentsList(props.state.contents)))
     )
   })
     .componentDidMount(_.backend.start())
