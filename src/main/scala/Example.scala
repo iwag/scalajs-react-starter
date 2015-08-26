@@ -10,7 +10,16 @@ object TimerExample {
 
   def content = Timer()
 
-  case class Content(id: String, imgsrc: String, title: String, description: String) {
+  case class Tag(name: String)
+
+  val tag = ReactComponentB[Tag]("tag")
+  .render( _ =>
+    div(cls := "ui small basic button")
+    ).build
+
+  val tagList = ReactComponentB[List[Tag]]("tags")
+
+  case class Content(id: String, imgsrc: String, tags: String, title: String, description: String, startTime: String) {
     def link: String = "http://nico.ms/" + id
   }
 
@@ -23,11 +32,12 @@ object TimerExample {
       ),
       div(cls := "content",
         h2(cls := "teal header", a(
-          href := p.link, p.title
+          href := p.link, dangerouslySetInnerHtml(p.title)
         )
         ),
+        div(cls:="meta", p.tags),
         // taglist
-        div(cls := "description", p.description)
+        div(cls := "description", dangerouslySetInnerHtml(p.description))
       )
     )
   })
@@ -43,65 +53,90 @@ object TimerExample {
 
   case class State(contents: List[Content])
 
+  val initial = List()
 
   class Backend($: BackendScope[_, State]) {
+
+
     var interval: js.UndefOr[js.timers.SetIntervalHandle] =
       js.undefined
 
-    def tick() = {
-      $.modState(s => s)
-    }
+    val intervalSec = 30
 
-    def getJson = {
+    def doGetJson() = {
+
+
+      val d = new js.Date
+
+      dom.console.log(d.toLocaleDateString() + d.toLocaleTimeString())
+
+      def pad(i:Int):String = i.formatted("%02d")
 
       val url = "http://api.search.nicovideo.jp/api/"
-      val data =
-        """
+      def data(s:String) =
+        s"""
           |{
-          |      query: "test",
-          |      service: ['video'],
+          |      query: "、 or 。 or は or が or の",
+          |      service: ['${s}'],
           |      search: ['title','description','tags'],
-          |      join: ['cmsid','title','description','tags', 'thumbnail_url', 'view_counter', 'mylist_counter', 'start_time'],
-          |      sort_by: '_popular',
-          |      order: true,
-          |      size:15,
+          |      join: ['cmsid','title','description','tags', 'thumbnail_url', 'view_counter', 'category_tags', 'start_time'],
+          |      sort_by: 'start_time',
+          |      order: "desc",
+          |      filters: [
+          |      {"type":"range", "field":"start_time",
+          |      "to":"${d.getFullYear}-${pad(8)}-${pad(27)} ${pad(d.getHours)}:${pad(d.getMinutes)}:${pad(d.getSeconds())}",
+          |      "from":"${d.getFullYear}-${pad(8)}-${pad(27)} ${pad(d.getHours)}:${pad(d.getMinutes)}:${pad(scala.math.max(d.getSeconds()-intervalSec,0))}"
+          |      }
+          |      ],
+          |      size:10,
           |      issuer: "github.com/iwag",
           |      reason: "react js"
           |    }
         """.stripMargin
 
-      Ajax.post(url, data).foreach {
-        x =>
-          val rows = x.responseText.split("\r\n").toList
-          val valuesString = rows.find(p => p.contains( """"type":"hits","values"""")).get
-          val obj = valuesString.asInstanceOf[js.Dynamic]
-          // val contents = read[List[Content]](valuesString)
-          //$.modState(_ => State(contents))
-          dom.console.info(obj)
-      }
-      /*
-      g.jsonp(url, (result: js.Dynamic) => {
-        if (result != js.undefined && result.data != js.undefined) {
-          dom.console.info(result)
-          dom.console.info(result.data)
-          val data = result.data.asInstanceOf[js.Array[js.Dynamic]]
-          val pics = data.toList.map(item => Content(item.cmsid.toString, item.thumbnail_url.toString, item.title.toString, item.description.toString))
-          $.modState(_ => State(pics))
+
+      List("video","live", "news").foreach { s =>
+        dom.console.log(data(s))
+        Ajax.post(url, data(s)).foreach {
+          x =>
+            //  dom.console.log(x.responseText)
+            val rows = x.responseText.split("\n").toList
+            rows.find(p => p.contains( """"type":"hits","values"""")) match {
+              case Some(valuesRowString) =>
+                val values = js.JSON.parse(valuesRowString).values.asInstanceOf[js.Array[js.Dynamic]]
+
+                val list = values.map { v =>
+                  Content(v.cmsid.toString, v.thumbnail_url.toString, v.tags.toString, v.title.toString, v.description.toString, v.start_time.toString)
+                } toList
+
+                dom.console.log(list.toString)
+
+                $.modState{s =>
+                      val sorted = (list ++ s.contents) //.sortBy(c => c.startTime)
+                      State(sorted)
+                }
+
+                list
+              case None => List()
+            }
         }
-      })
-      */
+      }
+
+    }
+
+    def tick() = {
+      doGetJson()
     }
 
     def start() = {
-      interval = js.timers.setInterval(1000)(tick())
-      getJson
+      interval = js.timers.setInterval(intervalSec*1000)(tick())
+      doGetJson()
     }
   }
 
   def initialState(): State = {
     State(
-      List(Content("sm9", "http://tn-skr2.smilevideo.jp/smile?i=9", "sm9", "sm9 sm9"),
-        Content("sm22954889", "http://tn-skr2.smilevideo.jp/smile?i=22954889", "test", "test test"))
+      initial
     )
   }
 
@@ -113,7 +148,7 @@ object TimerExample {
     div(cls := "ui page grid",
       div(cls := "column",
         div(cls := "ui large aligned header",
-          "test"
+          "タイムラインβ"
         ),
         div(cls := "ui divider"),
         contentsList(props.state.contents)
