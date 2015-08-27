@@ -50,6 +50,8 @@ object ReactApp extends JSApp {
     app(data) render dom.document.body
 
   @JSExport
-  override def main(): Unit =
+  override def main(): Unit = {
+    dom.document.title = "すごいタイムラインθ"
     component(List("Home", "Examples", "Documentation"))
+  }
 }

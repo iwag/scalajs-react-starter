@@ -35,7 +35,7 @@ object TimerExample {
           href := p.link, dangerouslySetInnerHtml(p.title)
         )
         ),
-        div(cls:="meta", p.tags),
+        div(cls:="meta", p.tags + " " + p.startTime),
         // taglist
         div(cls := "description", dangerouslySetInnerHtml(p.description))
       )
@@ -61,31 +61,34 @@ object TimerExample {
     var interval: js.UndefOr[js.timers.SetIntervalHandle] =
       js.undefined
 
-    val intervalSec = 30
+    val intervalSec = 60
+
+    val delayMin = 3
 
     def doGetJson() = {
 
 
       val d = new js.Date
 
-      dom.console.log(d.toLocaleDateString() + d.toLocaleTimeString())
-
       def pad(i:Int):String = i.formatted("%02d")
 
       val url = "http://api.search.nicovideo.jp/api/"
-      def data(s:String) =
+
+      val startSec = (d.getSeconds()-intervalSec+60) % 60
+
+      def data(s: String, joins: String) =
         s"""
           |{
           |      query: "、 or 。 or は or が or の",
           |      service: ['${s}'],
           |      search: ['title','description','tags'],
-          |      join: ['cmsid','title','description','tags', 'thumbnail_url', 'view_counter', 'category_tags', 'start_time'],
+          |      join: [${joins}],
           |      sort_by: 'start_time',
           |      order: "desc",
           |      filters: [
           |      {"type":"range", "field":"start_time",
           |      "to":"${d.getFullYear}-${pad(8)}-${pad(27)} ${pad(d.getHours)}:${pad(d.getMinutes)}:${pad(d.getSeconds())}",
-          |      "from":"${d.getFullYear}-${pad(8)}-${pad(27)} ${pad(d.getHours)}:${pad(d.getMinutes)}:${pad(scala.math.max(d.getSeconds()-intervalSec,0))}"
+          |      "from":"${d.getFullYear}-${pad(8)}-${pad(27)} ${pad(d.getHours)}:${pad(d.getMinutes-delayMin)}:${pad(startSec)}"
           |      }
           |      ],
           |      size:10,
@@ -95,34 +98,47 @@ object TimerExample {
         """.stripMargin
 
 
-      List("video","live", "news").foreach { s =>
-        dom.console.log(data(s))
-        Ajax.post(url, data(s)).foreach {
+      val services = Map(
+        "video" -> List("cmsid","title","description","tags", "thumbnail_url", "view_counter", "category_tags", "start_time"),
+        //"news" -> List("cmsid","title","description","tags", "start_time"),
+        "live" -> List("cmsid","title","description","tags", "community_icon", "view_counter", "category_tags", "start_time")
+      ).mapValues(l => l.map(i => s""" "${i}" """).mkString(","))
+
+      dom.console.log(data(services.head._1, services.head._2))
+
+      services.foreach { ii =>
+        val (s, joins) = ii
+
+        Ajax.post(url, data(s,joins)).foreach {
           x =>
-            //  dom.console.log(x.responseText)
             val rows = x.responseText.split("\n").toList
+
+            rows.find(p => p.contains( """"total":""")) match {
+              case Some(v) => dom.console.log(v); ""
+              case None => ""
+            }
+            //dom.console.log(x.responseText)
             rows.find(p => p.contains( """"type":"hits","values"""")) match {
               case Some(valuesRowString) =>
                 val values = js.JSON.parse(valuesRowString).values.asInstanceOf[js.Array[js.Dynamic]]
 
                 val list = values.map { v =>
-                  Content(v.cmsid.toString, v.thumbnail_url.toString, v.tags.toString, v.title.toString, v.description.toString, v.start_time.toString)
+                  val thumb = if (s=="live") v.community_icon.toString else v.thumbnail_url.toString
+                  Content(v.cmsid.toString, thumb, v.tags.toString, v.title.toString, v.description.toString, v.start_time.toString)
                 } toList
 
-                dom.console.log(list.toString)
 
-                $.modState{s =>
-                      val sorted = (list ++ s.contents) //.sortBy(c => c.startTime)
-                      State(sorted)
+                $.modState { st =>
+                  val sorted = (list ++ st.contents) //.sortBy(c => c.startTime)
+                  State(sorted)
                 }
 
                 list
               case None => List()
             }
         }
+        }
       }
-
-    }
 
     def tick() = {
       doGetJson()
@@ -147,9 +163,7 @@ object TimerExample {
     .render(props => {
     div(cls := "ui page grid",
       div(cls := "column",
-        div(cls := "ui large aligned header",
-          "タイムラインβ"
-        ),
+        div(cls := "ui large aligned header"),
         div(cls := "ui divider"),
         contentsList(props.state.contents)
       )
