@@ -89,7 +89,8 @@ object TimerExample {
           |      {"type":"range", "field":"start_time",
           |      "to":"${d.getFullYear}-${pad(8)}-${pad(27)} ${pad(d.getHours)}:${pad(d.getMinutes)}:${pad(d.getSeconds())}",
           |      "from":"${d.getFullYear}-${pad(8)}-${pad(27)} ${pad(d.getHours)}:${pad(d.getMinutes-delayMin)}:${pad(startSec)}"
-          |      }
+          |      },
+          |      {"type":"equal", "field":"ss_adult", "value":false}
           |      ],
           |      size:10,
           |      issuer: "github.com/iwag",
@@ -100,7 +101,9 @@ object TimerExample {
 
       val services = Map(
         "video" -> List("cmsid","title","description","tags", "thumbnail_url", "view_counter", "category_tags", "start_time"),
-        //"news" -> List("cmsid","title","description","tags", "start_time"),
+        "news" -> List("cmsid","title","description","tags", "start_time"),
+        "illust" -> List("cmsid","title","description","tags", "thumbnail_url", "view_counter", "start_time"),
+//        "book" -> List("cmsid","title","description","tags", "thumbnail_url", "view_counter", "start_time"),
         "live" -> List("cmsid","title","description","tags", "community_icon", "view_counter", "category_tags", "start_time")
       ).mapValues(l => l.map(i => s""" "${i}" """).mkString(","))
 
@@ -129,7 +132,7 @@ object TimerExample {
 
 
                 $.modState { st =>
-                  val sorted = (list ++ st.contents) //.sortBy(c => c.startTime)
+                  val sorted = (list ++ st.contents)
                   State(sorted)
                 }
 
