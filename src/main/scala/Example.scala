@@ -63,7 +63,7 @@ object TimerExample {
 
     val intervalSec = 60
 
-    val delayMin = 3
+    val delayMin = 5
 
     def doGetJson() = {
 
@@ -87,8 +87,8 @@ object TimerExample {
           |      order: "desc",
           |      filters: [
           |      {"type":"range", "field":"start_time",
-          |      "to":"${d.getFullYear}-${pad(8)}-${pad(27)} ${pad(d.getHours)}:${pad(d.getMinutes)}:${pad(d.getSeconds())}",
-          |      "from":"${d.getFullYear}-${pad(8)}-${pad(27)} ${pad(d.getHours)}:${pad(d.getMinutes-delayMin)}:${pad(startSec)}"
+          |      "to":"${d.getFullYear}-${pad(8)}-${pad(28)} ${pad(d.getHours)}:${pad(d.getMinutes)}:${pad(d.getSeconds())}",
+          |      "from":"${d.getFullYear}-${pad(8)}-${pad(28)} ${pad(d.getHours)}:${pad(d.getMinutes-delayMin)}:${pad(startSec)}"
           |      },
           |      {"type":"equal", "field":"ss_adult", "value":false}
           |      ],

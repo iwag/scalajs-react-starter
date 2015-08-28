@@ -1196,7 +1196,7 @@ $c_Lexample_TimerExample$Backend.prototype.init___Ljapgolly_scalajs_react_Backen
   this.example$TimerExample$Backend$$$$f = $$;
   this.interval$1 = (void 0);
   this.intervalSec$1 = 60;
-  this.delayMin$1 = 3;
+  this.delayMin$1 = 5;
   return this
 });
 $c_Lexample_TimerExample$Backend.prototype.start__V = (function() {
@@ -1208,7 +1208,7 @@ $c_Lexample_TimerExample$Backend.prototype.start__V = (function() {
   this.doGetJson__V()
 });
 $c_Lexample_TimerExample$Backend.prototype.example$TimerExample$Backend$$data$1__T__T__sjs_js_Date__I__T = (function(s, joins, d$1, startSec$1) {
-  var this$2 = new $c_sci_StringOps().init___T(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["\n          |{\n          |      query: \"\u3001 or \u3002 or \u306f or \u304c or \u306e\",\n          |      service: ['", "'],\n          |      search: ['title','description','tags'],\n          |      join: [", "],\n          |      sort_by: 'start_time',\n          |      order: \"desc\",\n          |      filters: [\n          |      {\"type\":\"range\", \"field\":\"start_time\",\n          |      \"to\":\"", "-", "-", " ", ":", ":", "\",\n          |      \"from\":\"", "-", "-", " ", ":", ":", "\"\n          |      }\n          |      ],\n          |      size:10,\n          |      issuer: \"github.com/iwag\",\n          |      reason: \"react js\"\n          |    }\n        "])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([s, joins, $uI(d$1["getFullYear"]()), this.pad$1__p1__I__T(8), this.pad$1__p1__I__T(27), this.pad$1__p1__I__T($uI(d$1["getHours"]())), this.pad$1__p1__I__T($uI(d$1["getMinutes"]())), this.pad$1__p1__I__T($uI(d$1["getSeconds"]())), $uI(d$1["getFullYear"]()), this.pad$1__p1__I__T(8), this.pad$1__p1__I__T(27), this.pad$1__p1__I__T($uI(d$1["getHours"]())), this.pad$1__p1__I__T((($uI(d$1["getMinutes"]()) - this.delayMin$1) | 0)), this.pad$1__p1__I__T(startSec$1)])));
+  var this$2 = new $c_sci_StringOps().init___T(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["\n          |{\n          |      query: \"\u3001 or \u3002 or \u306f or \u304c or \u306e\",\n          |      service: ['", "'],\n          |      search: ['title','description','tags'],\n          |      join: [", "],\n          |      sort_by: 'start_time',\n          |      order: \"desc\",\n          |      filters: [\n          |      {\"type\":\"range\", \"field\":\"start_time\",\n          |      \"to\":\"", "-", "-", " ", ":", ":", "\",\n          |      \"from\":\"", "-", "-", " ", ":", ":", "\"\n          |      },\n          |      {\"type\":\"equal\", \"field\":\"ss_adult\", \"value\":false}\n          |      ],\n          |      size:10,\n          |      issuer: \"github.com/iwag\",\n          |      reason: \"react js\"\n          |    }\n        "])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([s, joins, $uI(d$1["getFullYear"]()), this.pad$1__p1__I__T(8), this.pad$1__p1__I__T(28), this.pad$1__p1__I__T($uI(d$1["getHours"]())), this.pad$1__p1__I__T($uI(d$1["getMinutes"]())), this.pad$1__p1__I__T($uI(d$1["getSeconds"]())), $uI(d$1["getFullYear"]()), this.pad$1__p1__I__T(8), this.pad$1__p1__I__T(28), this.pad$1__p1__I__T($uI(d$1["getHours"]())), this.pad$1__p1__I__T((($uI(d$1["getMinutes"]()) - this.delayMin$1) | 0)), this.pad$1__p1__I__T(startSec$1)])));
   return $s_sci_StringLike$class__stripMargin__sci_StringLike__C__T(this$2, 124)
 });
 $c_Lexample_TimerExample$Backend.prototype.pad$1__p1__I__T = (function(i) {
@@ -1257,32 +1257,44 @@ $c_Lexample_TimerExample$Backend.prototype.doGetJson__V = (function() {
   var this$3 = $m_sci_List$();
   var cbf = this$3.ReusableCBFInstance$2;
   var y = $as_sci_List($s_sc_TraversableLike$class__to__sc_TraversableLike__scg_CanBuildFrom__O(xs, cbf));
-  var jsx$1 = new $c_T2().init___O__O("video", y);
+  var jsx$3 = new $c_T2().init___O__O("video", y);
   $m_sci_List$();
-  var xs$1 = new $c_sjs_js_WrappedArray().init___sjs_js_Array(["cmsid", "title", "description", "tags", "community_icon", "view_counter", "category_tags", "start_time"]);
+  var xs$1 = new $c_sjs_js_WrappedArray().init___sjs_js_Array(["cmsid", "title", "description", "tags", "start_time"]);
   var this$7 = $m_sci_List$();
   var cbf$1 = this$7.ReusableCBFInstance$2;
   var y$1 = $as_sci_List($s_sc_TraversableLike$class__to__sc_TraversableLike__scg_CanBuildFrom__O(xs$1, cbf$1));
-  var array = [jsx$1, new $c_T2().init___O__O("live", y$1)];
-  var this$10 = new $c_scm_MapBuilder().init___sc_GenMap($m_sci_Map$EmptyMap$());
+  var jsx$2 = new $c_T2().init___O__O("news", y$1);
+  $m_sci_List$();
+  var xs$2 = new $c_sjs_js_WrappedArray().init___sjs_js_Array(["cmsid", "title", "description", "tags", "thumbnail_url", "view_counter", "start_time"]);
+  var this$11 = $m_sci_List$();
+  var cbf$2 = this$11.ReusableCBFInstance$2;
+  var y$2 = $as_sci_List($s_sc_TraversableLike$class__to__sc_TraversableLike__scg_CanBuildFrom__O(xs$2, cbf$2));
+  var jsx$1 = new $c_T2().init___O__O("illust", y$2);
+  $m_sci_List$();
+  var xs$3 = new $c_sjs_js_WrappedArray().init___sjs_js_Array(["cmsid", "title", "description", "tags", "community_icon", "view_counter", "category_tags", "start_time"]);
+  var this$15 = $m_sci_List$();
+  var cbf$3 = this$15.ReusableCBFInstance$2;
+  var y$3 = $as_sci_List($s_sc_TraversableLike$class__to__sc_TraversableLike__scg_CanBuildFrom__O(xs$3, cbf$3));
+  var array = [jsx$3, jsx$2, jsx$1, new $c_T2().init___O__O("live", y$3)];
+  var this$18 = new $c_scm_MapBuilder().init___sc_GenMap($m_sci_Map$EmptyMap$());
   matchEnd4: {
     var i = 0;
     var len = $uI(array["length"]);
     while ((i < len)) {
       var index = i;
       var arg1 = array[index];
-      this$10.$$plus$eq__T2__scm_MapBuilder($as_T2(arg1));
+      this$18.$$plus$eq__T2__scm_MapBuilder($as_T2(arg1));
       i = ((1 + i) | 0)
     };
     break matchEnd4
   };
-  var this$11 = $as_sci_MapLike(this$10.elems$1);
+  var this$19 = $as_sci_MapLike(this$18.elems$1);
   var f = new $c_Lexample_TimerExample$Backend$$anonfun$4().init___Lexample_TimerExample$Backend(this);
-  var services = new $c_sci_MapLike$$anon$2().init___sci_MapLike__F1(this$11, f);
-  var jsx$2 = $g["console"];
+  var services = new $c_sci_MapLike$$anon$2().init___sci_MapLike__F1(this$19, f);
+  var jsx$4 = $g["console"];
   $m_Ljapgolly_scalajs_react_package$();
   var v = this.example$TimerExample$Backend$$data$1__T__T__sjs_js_Date__I__T($as_T($as_T2(services.iterator__sc_Iterator().next__O()).$$und1$f), $as_T($as_T2(services.iterator__sc_Iterator().next__O()).$$und2$f), d, startSec);
-  jsx$2["log"](v);
+  jsx$4["log"](v);
   services.foreach__F1__V(new $c_Lexample_TimerExample$Backend$$anonfun$doGetJson$1().init___Lexample_TimerExample$Backend__sjs_js_Date__T__I(this, d, "http://api.search.nicovideo.jp/api/", startSec))
 });
 var $is_Lexample_TimerExample$Backend = (function(obj) {
