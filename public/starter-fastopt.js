@@ -1208,7 +1208,7 @@ $c_Lexample_TimerExample$Backend.prototype.start__V = (function() {
   this.doGetJson__V()
 });
 $c_Lexample_TimerExample$Backend.prototype.example$TimerExample$Backend$$data$1__T__T__sjs_js_Date__I__T = (function(s, joins, d$1, startSec$1) {
-  var this$2 = new $c_sci_StringOps().init___T(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["\n          |{\n          |      query: \"\u3001 or \u3002 or \u306f or \u304c or \u306e\",\n          |      service: ['", "'],\n          |      search: ['title','description','tags'],\n          |      join: [", "],\n          |      sort_by: 'start_time',\n          |      order: \"desc\",\n          |      filters: [\n          |      {\"type\":\"range\", \"field\":\"start_time\",\n          |      \"to\":\"", "-", "-", " ", ":", ":", "\",\n          |      \"from\":\"", "-", "-", " ", ":", ":", "\"\n          |      },\n          |      {\"type\":\"equal\", \"field\":\"ss_adult\", \"value\":false}\n          |      ],\n          |      size:10,\n          |      issuer: \"github.com/iwag\",\n          |      reason: \"react js\"\n          |    }\n        "])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([s, joins, $uI(d$1["getFullYear"]()), this.pad$1__p1__I__T(8), this.pad$1__p1__I__T(28), this.pad$1__p1__I__T($uI(d$1["getHours"]())), this.pad$1__p1__I__T($uI(d$1["getMinutes"]())), this.pad$1__p1__I__T($uI(d$1["getSeconds"]())), $uI(d$1["getFullYear"]()), this.pad$1__p1__I__T(8), this.pad$1__p1__I__T(28), this.pad$1__p1__I__T($uI(d$1["getHours"]())), this.pad$1__p1__I__T((($uI(d$1["getMinutes"]()) - this.delayMin$1) | 0)), this.pad$1__p1__I__T(startSec$1)])));
+  var this$2 = new $c_sci_StringOps().init___T(new $c_s_StringContext().init___sc_Seq(new $c_sjs_js_WrappedArray().init___sjs_js_Array(["\n          |{\n          |      query: \"\u3001 or \u3002 or \u306f or \u304c or \u306e\",\n          |      service: ['", "'],\n          |      search: ['title','description','tags'],\n          |      join: [", "],\n          |      sort_by: 'start_time',\n          |      order: \"desc\",\n          |      filters: [\n          |      {\"type\":\"range\", \"field\":\"start_time\",\n          |      \"to\":\"", "-", "-", " ", ":", ":", "\",\n          |      \"from\":\"", "-", "-", " ", ":", ":", "\"\n          |      },\n          |      {\"type\":\"equal\", \"field\":\"ss_adult\", \"value\":false}\n          |      ],\n          |      size:10,\n          |      issuer: \"github.com/iwag\",\n          |      reason: \"react js\"\n          |    }\n        "])).s__sc_Seq__T(new $c_sjs_js_WrappedArray().init___sjs_js_Array([s, joins, $uI(d$1["getFullYear"]()), this.pad$1__p1__I__T(9), this.pad$1__p1__I__T(2), this.pad$1__p1__I__T($uI(d$1["getHours"]())), this.pad$1__p1__I__T($uI(d$1["getMinutes"]())), this.pad$1__p1__I__T($uI(d$1["getSeconds"]())), $uI(d$1["getFullYear"]()), this.pad$1__p1__I__T(9), this.pad$1__p1__I__T(2), this.pad$1__p1__I__T($uI(d$1["getHours"]())), this.pad$1__p1__I__T((($uI(d$1["getMinutes"]()) - this.delayMin$1) | 0)), this.pad$1__p1__I__T(startSec$1)])));
   return $s_sci_StringLike$class__stripMargin__sci_StringLike__C__T(this$2, 124)
 });
 $c_Lexample_TimerExample$Backend.prototype.pad$1__p1__I__T = (function(i) {
@@ -12685,62 +12685,62 @@ $c_Lexample_TimerExample$$anonfun$2.prototype.apply__Lexample_TimerExample$Conte
   $m_Ljapgolly_scalajs_react_vdom_package$all$().cls$4;
   $m_Ljapgolly_scalajs_react_vdom_package$all$();
   var av$1 = $m_Ljapgolly_scalajs_react_vdom_Scalatags$().stringAttrX$1;
-  var jsx$19 = jsx$20.apply__sc_Seq__Ljapgolly_scalajs_react_vdom_ReactTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Ljapgolly_scalajs_react_vdom_ClassNameAttr$$anon$2().init___O__Ljapgolly_scalajs_react_vdom_AttrValue("ui divider", av$1)]));
-  var jsx$18 = $m_Ljapgolly_scalajs_react_vdom_package$all$().div$4;
+  var jsx$19 = new $c_Ljapgolly_scalajs_react_vdom_ClassNameAttr$$anon$2().init___O__Ljapgolly_scalajs_react_vdom_AttrValue("image", av$1);
+  var jsx$18 = $m_Ljapgolly_scalajs_react_vdom_package$all$().img$4;
   $m_Ljapgolly_scalajs_react_vdom_package$all$().cls$4;
   $m_Ljapgolly_scalajs_react_vdom_package$all$();
   var av$2 = $m_Ljapgolly_scalajs_react_vdom_Scalatags$().stringAttrX$1;
-  var jsx$17 = new $c_Ljapgolly_scalajs_react_vdom_ClassNameAttr$$anon$2().init___O__Ljapgolly_scalajs_react_vdom_AttrValue("image", av$2);
-  var jsx$16 = $m_Ljapgolly_scalajs_react_vdom_package$all$().img$4;
-  $m_Ljapgolly_scalajs_react_vdom_package$all$().cls$4;
-  $m_Ljapgolly_scalajs_react_vdom_package$all$();
-  var av$3 = $m_Ljapgolly_scalajs_react_vdom_Scalatags$().stringAttrX$1;
-  var jsx$15 = new $c_Ljapgolly_scalajs_react_vdom_ClassNameAttr$$anon$2().init___O__Ljapgolly_scalajs_react_vdom_AttrValue("ui left small rounded image", av$3);
-  var this$10 = $m_Ljapgolly_scalajs_react_vdom_package$all$().src$4;
+  var jsx$17 = new $c_Ljapgolly_scalajs_react_vdom_ClassNameAttr$$anon$2().init___O__Ljapgolly_scalajs_react_vdom_AttrValue("ui left small rounded image", av$2);
+  var this$8 = $m_Ljapgolly_scalajs_react_vdom_package$all$().src$4;
   var v = p.imgsrc$1;
   $m_Ljapgolly_scalajs_react_vdom_package$all$();
   var ev = $m_Ljapgolly_scalajs_react_vdom_Scalatags$().stringAttrX$1;
-  var jsx$14 = new $c_Ljapgolly_scalajs_react_vdom_Scalatags$AttrPair().init___Ljapgolly_scalajs_react_vdom_Attr__O__Ljapgolly_scalajs_react_vdom_AttrValue(this$10, v, ev);
-  var this$12 = $m_Ljapgolly_scalajs_react_vdom_package$all$().title$4;
+  var jsx$16 = new $c_Ljapgolly_scalajs_react_vdom_Scalatags$AttrPair().init___Ljapgolly_scalajs_react_vdom_Attr__O__Ljapgolly_scalajs_react_vdom_AttrValue(this$8, v, ev);
+  var this$10 = $m_Ljapgolly_scalajs_react_vdom_package$all$().title$4;
   var v$1 = p.title$1;
   $m_Ljapgolly_scalajs_react_vdom_package$all$();
   var ev$1 = $m_Ljapgolly_scalajs_react_vdom_Scalatags$().stringAttrX$1;
-  var jsx$13 = jsx$18.apply__sc_Seq__Ljapgolly_scalajs_react_vdom_ReactTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$17, jsx$16.apply__sc_Seq__Ljapgolly_scalajs_react_vdom_ReactTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$15, jsx$14, new $c_Ljapgolly_scalajs_react_vdom_Scalatags$AttrPair().init___Ljapgolly_scalajs_react_vdom_Attr__O__Ljapgolly_scalajs_react_vdom_AttrValue(this$12, v$1, ev$1)]))]));
-  var jsx$12 = $m_Ljapgolly_scalajs_react_vdom_package$all$().div$4;
+  var jsx$15 = jsx$20.apply__sc_Seq__Ljapgolly_scalajs_react_vdom_ReactTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$19, jsx$18.apply__sc_Seq__Ljapgolly_scalajs_react_vdom_ReactTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$17, jsx$16, new $c_Ljapgolly_scalajs_react_vdom_Scalatags$AttrPair().init___Ljapgolly_scalajs_react_vdom_Attr__O__Ljapgolly_scalajs_react_vdom_AttrValue(this$10, v$1, ev$1)]))]));
+  var jsx$14 = $m_Ljapgolly_scalajs_react_vdom_package$all$().div$4;
+  $m_Ljapgolly_scalajs_react_vdom_package$all$().cls$4;
+  $m_Ljapgolly_scalajs_react_vdom_package$all$();
+  var av$3 = $m_Ljapgolly_scalajs_react_vdom_Scalatags$().stringAttrX$1;
+  var jsx$13 = new $c_Ljapgolly_scalajs_react_vdom_ClassNameAttr$$anon$2().init___O__Ljapgolly_scalajs_react_vdom_AttrValue("content", av$3);
+  var jsx$12 = $m_Ljapgolly_scalajs_react_vdom_package$all$().h2$4;
   $m_Ljapgolly_scalajs_react_vdom_package$all$().cls$4;
   $m_Ljapgolly_scalajs_react_vdom_package$all$();
   var av$4 = $m_Ljapgolly_scalajs_react_vdom_Scalatags$().stringAttrX$1;
-  var jsx$11 = new $c_Ljapgolly_scalajs_react_vdom_ClassNameAttr$$anon$2().init___O__Ljapgolly_scalajs_react_vdom_AttrValue("content", av$4);
-  var jsx$10 = $m_Ljapgolly_scalajs_react_vdom_package$all$().h2$4;
-  $m_Ljapgolly_scalajs_react_vdom_package$all$().cls$4;
-  $m_Ljapgolly_scalajs_react_vdom_package$all$();
-  var av$5 = $m_Ljapgolly_scalajs_react_vdom_Scalatags$().stringAttrX$1;
-  var jsx$9 = new $c_Ljapgolly_scalajs_react_vdom_ClassNameAttr$$anon$2().init___O__Ljapgolly_scalajs_react_vdom_AttrValue("teal header", av$5);
-  var jsx$8 = $m_Ljapgolly_scalajs_react_vdom_package$all$().a$4;
-  var this$18 = $m_Ljapgolly_scalajs_react_vdom_package$all$().href$4;
+  var jsx$11 = new $c_Ljapgolly_scalajs_react_vdom_ClassNameAttr$$anon$2().init___O__Ljapgolly_scalajs_react_vdom_AttrValue("teal header", av$4);
+  var jsx$10 = $m_Ljapgolly_scalajs_react_vdom_package$all$().a$4;
+  var this$16 = $m_Ljapgolly_scalajs_react_vdom_package$all$().href$4;
   var v$2 = p.link__T();
   $m_Ljapgolly_scalajs_react_vdom_package$all$();
   var ev$2 = $m_Ljapgolly_scalajs_react_vdom_Scalatags$().stringAttrX$1;
-  var jsx$7 = new $c_Ljapgolly_scalajs_react_vdom_Scalatags$AttrPair().init___Ljapgolly_scalajs_react_vdom_Attr__O__Ljapgolly_scalajs_react_vdom_AttrValue(this$18, v$2, ev$2);
-  var this$19 = $m_Ljapgolly_scalajs_react_vdom_package$all$();
+  var jsx$9 = new $c_Ljapgolly_scalajs_react_vdom_Scalatags$AttrPair().init___Ljapgolly_scalajs_react_vdom_Attr__O__Ljapgolly_scalajs_react_vdom_AttrValue(this$16, v$2, ev$2);
+  var this$17 = $m_Ljapgolly_scalajs_react_vdom_package$all$();
   var html = p.title$1;
-  var jsx$6 = jsx$10.apply__sc_Seq__Ljapgolly_scalajs_react_vdom_ReactTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$9, jsx$8.apply__sc_Seq__Ljapgolly_scalajs_react_vdom_ReactTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$7, $s_Ljapgolly_scalajs_react_vdom_Extra$Attrs$class__dangerouslySetInnerHtml__Ljapgolly_scalajs_react_vdom_Extra$Attrs__T__Ljapgolly_scalajs_react_vdom_TagMod(this$19, html)]))]));
-  var jsx$5 = $m_Ljapgolly_scalajs_react_vdom_package$all$().div$4;
+  var jsx$8 = jsx$12.apply__sc_Seq__Ljapgolly_scalajs_react_vdom_ReactTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$11, jsx$10.apply__sc_Seq__Ljapgolly_scalajs_react_vdom_ReactTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$9, $s_Ljapgolly_scalajs_react_vdom_Extra$Attrs$class__dangerouslySetInnerHtml__Ljapgolly_scalajs_react_vdom_Extra$Attrs__T__Ljapgolly_scalajs_react_vdom_TagMod(this$17, html)]))]));
+  var jsx$7 = $m_Ljapgolly_scalajs_react_vdom_package$all$().div$4;
+  $m_Ljapgolly_scalajs_react_vdom_package$all$().cls$4;
+  $m_Ljapgolly_scalajs_react_vdom_package$all$();
+  var av$5 = $m_Ljapgolly_scalajs_react_vdom_Scalatags$().stringAttrX$1;
+  var jsx$6 = new $c_Ljapgolly_scalajs_react_vdom_ClassNameAttr$$anon$2().init___O__Ljapgolly_scalajs_react_vdom_AttrValue("meta", av$5);
+  $m_Ljapgolly_scalajs_react_vdom_package$all$();
+  var v$3 = ((((p.serviceName__T() + " ") + p.tags$1) + " ") + p.startTime$1);
+  var jsx$5 = jsx$7.apply__sc_Seq__Ljapgolly_scalajs_react_vdom_ReactTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$6, new $c_Ljapgolly_scalajs_react_vdom_Scalatags$ReactNodeFrag().init___Ljapgolly_scalajs_react_ReactNode(($m_Ljapgolly_scalajs_react_package$(), v$3))]));
+  var jsx$4 = $m_Ljapgolly_scalajs_react_vdom_package$all$().div$4;
   $m_Ljapgolly_scalajs_react_vdom_package$all$().cls$4;
   $m_Ljapgolly_scalajs_react_vdom_package$all$();
   var av$6 = $m_Ljapgolly_scalajs_react_vdom_Scalatags$().stringAttrX$1;
-  var jsx$4 = new $c_Ljapgolly_scalajs_react_vdom_ClassNameAttr$$anon$2().init___O__Ljapgolly_scalajs_react_vdom_AttrValue("meta", av$6);
-  $m_Ljapgolly_scalajs_react_vdom_package$all$();
-  var v$3 = ((p.tags$1 + " ") + p.startTime$1);
-  var jsx$3 = jsx$5.apply__sc_Seq__Ljapgolly_scalajs_react_vdom_ReactTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$4, new $c_Ljapgolly_scalajs_react_vdom_Scalatags$ReactNodeFrag().init___Ljapgolly_scalajs_react_ReactNode(($m_Ljapgolly_scalajs_react_package$(), v$3))]));
-  var jsx$2 = $m_Ljapgolly_scalajs_react_vdom_package$all$().div$4;
+  var jsx$3 = new $c_Ljapgolly_scalajs_react_vdom_ClassNameAttr$$anon$2().init___O__Ljapgolly_scalajs_react_vdom_AttrValue("description", av$6);
+  var this$24 = $m_Ljapgolly_scalajs_react_vdom_package$all$();
+  var html$1 = p.description$1;
+  var jsx$2 = jsx$4.apply__sc_Seq__Ljapgolly_scalajs_react_vdom_ReactTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$3, $s_Ljapgolly_scalajs_react_vdom_Extra$Attrs$class__dangerouslySetInnerHtml__Ljapgolly_scalajs_react_vdom_Extra$Attrs__T__Ljapgolly_scalajs_react_vdom_TagMod(this$24, html$1)]));
+  var jsx$1 = $m_Ljapgolly_scalajs_react_vdom_package$all$().div$4;
   $m_Ljapgolly_scalajs_react_vdom_package$all$().cls$4;
   $m_Ljapgolly_scalajs_react_vdom_package$all$();
   var av$7 = $m_Ljapgolly_scalajs_react_vdom_Scalatags$().stringAttrX$1;
-  var jsx$1 = new $c_Ljapgolly_scalajs_react_vdom_ClassNameAttr$$anon$2().init___O__Ljapgolly_scalajs_react_vdom_AttrValue("description", av$7);
-  var this$26 = $m_Ljapgolly_scalajs_react_vdom_package$all$();
-  var html$1 = p.description$1;
-  var t = jsx$22.apply__sc_Seq__Ljapgolly_scalajs_react_vdom_ReactTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$21, jsx$19, jsx$13, jsx$12.apply__sc_Seq__Ljapgolly_scalajs_react_vdom_ReactTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$11, jsx$6, jsx$3, jsx$2.apply__sc_Seq__Ljapgolly_scalajs_react_vdom_ReactTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$1, $s_Ljapgolly_scalajs_react_vdom_Extra$Attrs$class__dangerouslySetInnerHtml__Ljapgolly_scalajs_react_vdom_Extra$Attrs__T__Ljapgolly_scalajs_react_vdom_TagMod(this$26, html$1)]))]))]));
+  var t = jsx$22.apply__sc_Seq__Ljapgolly_scalajs_react_vdom_ReactTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$21, jsx$15, jsx$14.apply__sc_Seq__Ljapgolly_scalajs_react_vdom_ReactTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([jsx$13, jsx$8, jsx$5, jsx$2, jsx$1.apply__sc_Seq__Ljapgolly_scalajs_react_vdom_ReactTag(new $c_sjs_js_WrappedArray().init___sjs_js_Array([new $c_Ljapgolly_scalajs_react_vdom_ClassNameAttr$$anon$2().init___O__Ljapgolly_scalajs_react_vdom_AttrValue("extra", av$7)]))]))]));
   return t.render__Ljapgolly_scalajs_react_ReactElement()
 });
 var $d_Lexample_TimerExample$$anonfun$2 = new $TypeData().initClass({
@@ -13041,7 +13041,7 @@ $c_Lexample_TimerExample$Backend$$anonfun$doGetJson$1$$anonfun$apply$5.prototype
       var index = i;
       var arg1$2 = values[index];
       var thumb = ((this.s$1$f === "live") ? $objectToString(arg1$2["community_icon"]) : $objectToString(arg1$2["thumbnail_url"]));
-      var elem = new $c_Lexample_TimerExample$Content().init___T__T__T__T__T__T($objectToString(arg1$2["cmsid"]), thumb, $objectToString(arg1$2["tags"]), $objectToString(arg1$2["title"]), $objectToString(arg1$2["description"]), $objectToString(arg1$2["start_time"]));
+      var elem = new $c_Lexample_TimerExample$Content().init___T__T__T__T__T__T__T(this.s$1$f, $objectToString(arg1$2["cmsid"]), thumb, $objectToString(arg1$2["tags"]), $objectToString(arg1$2["title"]), $objectToString(arg1$2["description"]), $objectToString(arg1$2["start_time"]));
       array["push"](elem);
       i = ((1 + i) | 0)
     };
@@ -13094,6 +13094,7 @@ $c_Lexample_TimerExample$Backend$$anonfun$doGetJson$1$$anonfun$apply$5.prototype
 /** @constructor */
 var $c_Lexample_TimerExample$Content = (function() {
   $c_O.call(this);
+  this.service$1 = null;
   this.id$1 = null;
   this.imgsrc$1 = null;
   this.tags$1 = null;
@@ -13112,14 +13113,14 @@ $c_Lexample_TimerExample$Content.prototype.productPrefix__T = (function() {
   return "Content"
 });
 $c_Lexample_TimerExample$Content.prototype.productArity__I = (function() {
-  return 6
+  return 7
 });
 $c_Lexample_TimerExample$Content.prototype.equals__O__Z = (function(x$1) {
   if ((this === x$1)) {
     return true
   } else if ($is_Lexample_TimerExample$Content(x$1)) {
     var Content$1 = $as_Lexample_TimerExample$Content(x$1);
-    return ((((((this.id$1 === Content$1.id$1) && (this.imgsrc$1 === Content$1.imgsrc$1)) && (this.tags$1 === Content$1.tags$1)) && (this.title$1 === Content$1.title$1)) && (this.description$1 === Content$1.description$1)) && (this.startTime$1 === Content$1.startTime$1))
+    return (((((((this.service$1 === Content$1.service$1) && (this.id$1 === Content$1.id$1)) && (this.imgsrc$1 === Content$1.imgsrc$1)) && (this.tags$1 === Content$1.tags$1)) && (this.title$1 === Content$1.title$1)) && (this.description$1 === Content$1.description$1)) && (this.startTime$1 === Content$1.startTime$1))
   } else {
     return false
   }
@@ -13127,26 +13128,30 @@ $c_Lexample_TimerExample$Content.prototype.equals__O__Z = (function(x$1) {
 $c_Lexample_TimerExample$Content.prototype.productElement__I__O = (function(x$1) {
   switch (x$1) {
     case 0: {
-      return this.id$1;
+      return this.service$1;
       break
     }
     case 1: {
-      return this.imgsrc$1;
+      return this.id$1;
       break
     }
     case 2: {
-      return this.tags$1;
+      return this.imgsrc$1;
       break
     }
     case 3: {
-      return this.title$1;
+      return this.tags$1;
       break
     }
     case 4: {
-      return this.description$1;
+      return this.title$1;
       break
     }
     case 5: {
+      return this.description$1;
+      break
+    }
+    case 6: {
       return this.startTime$1;
       break
     }
@@ -13158,7 +13163,8 @@ $c_Lexample_TimerExample$Content.prototype.productElement__I__O = (function(x$1)
 $c_Lexample_TimerExample$Content.prototype.toString__T = (function() {
   return $m_sr_ScalaRunTime$().$$undtoString__s_Product__T(this)
 });
-$c_Lexample_TimerExample$Content.prototype.init___T__T__T__T__T__T = (function(id, imgsrc, tags, title, description, startTime) {
+$c_Lexample_TimerExample$Content.prototype.init___T__T__T__T__T__T__T = (function(service, id, imgsrc, tags, title, description, startTime) {
+  this.service$1 = service;
   this.id$1 = id;
   this.imgsrc$1 = imgsrc;
   this.tags$1 = tags;
@@ -13166,6 +13172,9 @@ $c_Lexample_TimerExample$Content.prototype.init___T__T__T__T__T__T = (function(i
   this.description$1 = description;
   this.startTime$1 = startTime;
   return this
+});
+$c_Lexample_TimerExample$Content.prototype.serviceName__T = (function() {
+  return ((this.service$1 === "live") ? "\u751f\u653e\u9001" : ((this.service$1 === "video") ? "\u52d5\u753b" : "\u30cb\u30e5\u30fc\u30b9"))
 });
 $c_Lexample_TimerExample$Content.prototype.link__T = (function() {
   return ("http://nico.ms/" + this.id$1)

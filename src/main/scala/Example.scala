@@ -19,14 +19,14 @@ object TimerExample {
 
   val tagList = ReactComponentB[List[Tag]]("tags")
 
-  case class Content(id: String, imgsrc: String, tags: String, title: String, description: String, startTime: String) {
+  case class Content(service: String, id: String, imgsrc: String, tags: String, title: String, description: String, startTime: String) {
     def link: String = "http://nico.ms/" + id
+    def serviceName: String = if (service=="live") "生放送" else if (service=="video") "動画" else "ニュース"
   }
 
   val container = ReactComponentB[(Content)]("picture")
     .render(p => {
     div(cls := "item",
-      div(cls := "ui divider"),
       div(cls := "image",
         img(cls := "ui left small rounded image", src := p.imgsrc, title := p.title)
       ),
@@ -35,9 +35,10 @@ object TimerExample {
           href := p.link, dangerouslySetInnerHtml(p.title)
         )
         ),
-        div(cls:="meta", p.tags + " " + p.startTime),
+        div(cls:="meta", p.serviceName + " " + p.tags + " " + p.startTime),
         // taglist
-        div(cls := "description", dangerouslySetInnerHtml(p.description))
+        div(cls := "description", dangerouslySetInnerHtml(p.description)),
+        div(cls := "extra")
       )
     )
   })
@@ -87,8 +88,8 @@ object TimerExample {
           |      order: "desc",
           |      filters: [
           |      {"type":"range", "field":"start_time",
-          |      "to":"${d.getFullYear}-${pad(8)}-${pad(28)} ${pad(d.getHours)}:${pad(d.getMinutes)}:${pad(d.getSeconds())}",
-          |      "from":"${d.getFullYear}-${pad(8)}-${pad(28)} ${pad(d.getHours)}:${pad(d.getMinutes-delayMin)}:${pad(startSec)}"
+          |      "to":"${d.getFullYear}-${pad(9)}-${pad(2)} ${pad(d.getHours)}:${pad(d.getMinutes)}:${pad(d.getSeconds())}",
+          |      "from":"${d.getFullYear}-${pad(9)}-${pad(2)} ${pad(d.getHours)}:${pad(d.getMinutes-delayMin)}:${pad(startSec)}"
           |      },
           |      {"type":"equal", "field":"ss_adult", "value":false}
           |      ],
@@ -127,7 +128,7 @@ object TimerExample {
 
                 val list = values.map { v =>
                   val thumb = if (s=="live") v.community_icon.toString else v.thumbnail_url.toString
-                  Content(v.cmsid.toString, thumb, v.tags.toString, v.title.toString, v.description.toString, v.start_time.toString)
+                  Content(s, v.cmsid.toString, thumb, v.tags.toString, v.title.toString, v.description.toString, v.start_time.toString)
                 } toList
 
 
