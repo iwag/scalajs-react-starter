@@ -24,6 +24,19 @@ object TimerExample {
     def serviceName: String = if (service=="live") "生放送" else if (service=="video") "動画" else "ニュース"
   }
 
+  type Click = (ReactEventI) => Unit
+
+  val inputForm = ReactComponentB[(String, Click, Click)]("input").render { p =>
+      val (text, change, click) = p
+      div(cls := "ui icon input",
+        form( onSubmit ==> click,
+          i(cls := "circular search icon"),
+        input(`type` := "text", onChange ==> change, placeholder := "...", value := text),
+        button("do")
+        )
+      )
+  }.build
+
   val container = ReactComponentB[(Content)]("picture")
     .render(p => {
     div(cls := "item",
@@ -52,7 +65,7 @@ object TimerExample {
   })
     .build
 
-  case class State(contents: List[Content])
+  case class State(contents: List[Content], text:String = "")
 
   val initial = List()
 
@@ -88,8 +101,8 @@ object TimerExample {
           |      order: "desc",
           |      filters: [
           |      {"type":"range", "field":"start_time",
-          |      "to":"${d.getFullYear}-${pad(9)}-${pad(2)} ${pad(d.getHours)}:${pad(d.getMinutes)}:${pad(d.getSeconds())}",
-          |      "from":"${d.getFullYear}-${pad(9)}-${pad(2)} ${pad(d.getHours)}:${pad(d.getMinutes-delayMin)}:${pad(startSec)}"
+          |      "to":"${d.getFullYear}-${pad(9)}-${pad(13)} ${pad(d.getHours)}:${pad(d.getMinutes)}:${pad(d.getSeconds())}",
+          |      "from":"${d.getFullYear}-${pad(9)}-${pad(13)} ${pad(d.getHours)}:${pad(d.getMinutes-delayMin)}:${pad(startSec)}"
           |      },
           |      {"type":"equal", "field":"ss_adult", "value":false}
           |      ],
@@ -152,6 +165,16 @@ object TimerExample {
       interval = js.timers.setInterval(intervalSec*1000)(tick())
       doGetJson()
     }
+
+    def changeText(e:ReactEventI):Unit = {
+      $.modState(s=>
+        State(s.contents, e.target.value)
+      )
+    }
+
+    def onClick(e:ReactEventI):Unit ={
+      doGetJson
+    }
   }
 
   def initialState(): State = {
@@ -168,6 +191,7 @@ object TimerExample {
     div(cls := "ui page grid",
       div(cls := "column",
         div(cls := "ui large aligned header"),
+        inputForm((props.state.text, props.backend.changeText, props.backend.onClick)),
         div(cls := "ui divider"),
         contentsList(props.state.contents)
       )
