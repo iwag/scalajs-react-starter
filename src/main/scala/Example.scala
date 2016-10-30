@@ -84,8 +84,64 @@ object TimerExample {
 
     val delayMin = 5
 
-    def doGetJson() = {
+    val services = List(
+      ("video", List("contentId", "title", "description", "tags", "thumbnailUrl", "viewCounter", "categoryTags", "startTime"), "startTime"),
+      ("news", List("contentId", "title", "description", "tags", "startTime"), "lastCommentTime"),
+      ("illust", List("contentId", "title", "description", "tags", "thumbnailUrl", "viewCounter", "startTime"), "startTime"),
+      //        "book" -> List("contentId","title","description","tags", "thumbnail_url", "view_counter", "start_time"),
+      ("live", List("contentId", "title", "description", "tags", "communityIcon", "thumbnailUrl", "viewCounter", "categoryTags", "start_time", "community_level"), "startTime")
+    ).map{i => (i._1,  i._2, i._3)}
 
+    def doGetJsonV2() = {
+      val d = new js.Date
+
+      def pad(i: Int): String = i.formatted("%02d")
+
+      val urlBase = "http://localhost:4567"
+
+      val startSec = (d.getSeconds() - intervalSec + 60) % 60
+
+      def params(j: List[String], sort: String) = Map[String, String](
+        "q" -> "%E3%80%81%20or%20%E3%80%82%20or%20%E3%81%AF%20or%20%E3%81%8C%20or%20%E3%81%AE",
+        "targets" -> "title,description,tags",
+        "fields" -> j.mkString(","),
+        "_sort" -> ("-" + sort),
+//        "filters[startTime][gte]" ->
+//          s"${d.getFullYear}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours)}:${pad(d.getMinutes)}:${pad(d.getSeconds())}%2b09:00",
+//        "filters[startTime][lt]" ->
+//          s"${d.getFullYear}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours)}:${pad(d.getMinutes - delayMin)}:${pad(startSec)}%2b09:00",
+//        "filters[ssAdult][0]" -> "false",
+        "_limit" -> "10",
+        "_offset" -> "0",
+        "_context" -> "github.com/iwag"
+      ).map(i => i._1 + "=" + i._2).mkString("&")
+
+      def url(s: String): String = List(urlBase, s, "search").mkString("/")
+
+      services.foreach { ii =>
+        val (s, joins, sort) = ii
+
+        Ajax.get(url(s) + "?" + params(joins, sort)).foreach {
+          x =>
+            val values = js.JSON.parse(x.responseText).data.asInstanceOf[js.Array[js.Dynamic]]
+
+            val list = values.map { v =>
+              val thumb = if (s == "live" && v.communityIcon != null) v.communityIcon.toString else v.thumbnailUrl.toString
+              Content(s, v.contentId.toString, thumb, v.tags.toString, v.title.toString, v.description.toString, v.startTime.toString)
+            } toList
+
+
+            $.modState { st =>
+              val sorted = (list ++ st.contents)
+              State(sorted)
+            }
+
+            list
+        }
+      }
+    }
+
+    def doGetJson() = {
 
       val d = new js.Date
 
@@ -118,19 +174,11 @@ object TimerExample {
           |    }
         """.stripMargin
 
-
-      val services = List(
-        ("video", List("cmsid", "title", "description", "tags", "thumbnail_url", "view_counter", "category_tags", "start_time"), "start_time"),
-        ("news", List("cmsid", "title", "description", "tags", "start_time"), "last_comment_time"),
-        ("illust", List("cmsid", "title", "description", "tags", "thumbnail_url", "view_counter", "start_time"), "start_time"),
-        //        "book" -> List("cmsid","title","description","tags", "thumbnail_url", "view_counter", "start_time"),
-        ("live", List("cmsid", "title", "description", "tags", "community_icon", "thumbnail_url", "view_counter", "category_tags", "start_time", "community_level"), "start_time")
-      ).map{i => (i._1,  i._2.map(s=>s""" "${s}" """).mkString(","), i._3)}
-
-      dom.console.log(data(services.head._1, services.head._2, services.head._3))
+      //dom.console.log(data(services.head._1, services.head._2, services.head._3))
 
       services.foreach { ii =>
-        val (s, joins, sort) = ii
+        val (s, j, sort) = ii
+        val joins = j.map(s=>s""" "${s}" """).mkString(",")
 
         Ajax.post(url, data(s,joins,sort)).foreach {
           x =>
@@ -164,12 +212,12 @@ object TimerExample {
       }
 
     def tick() = {
-      doGetJson()
+      doGetJsonV2()
     }
 
     def start() = {
       interval = js.timers.setInterval(intervalSec*1000)(tick())
-      doGetJson()
+      doGetJsonV2()
     }
 
     def changeText(e:ReactEventI):Unit = {
@@ -179,7 +227,7 @@ object TimerExample {
     }
 
     def onClick(e:ReactEventI):Unit ={
-      doGetJson
+      doGetJsonV2
     }
   }
 
